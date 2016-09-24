@@ -57,3 +57,19 @@ ctx3.moveTo(375,500);
 ctx3.strokeStyle = "white";
 ctx3.lineTo(375, 500);
 ctx3.stroke();
+
+//building
+ctx3.fillRect(560,250,200,100);
+//door
+ctx3.clearRect(575,265,40,40);
+ctx3.fillStyle = "orange";
+//roof
+ctx3.fillRect(620,240,60,110);
+ctx3.beginPath();
+ctx3.moveTo(535,250);
+ctx3.lineTo(660,200);
+ctx3.lineTo(785,250);
+ctx3.closePath();
+ctx3.stroke();
+ctx3.fillStyle = "peru";
+ctx3.fill();
