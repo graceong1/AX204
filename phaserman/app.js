@@ -33,8 +33,8 @@ function create() {
 	// player
 	player = game.add.sprite(32, 400, 'dude');
 		// animate sprite 
-		player.animations.add('left', [0, 1] 10, true); //numbers in [] = which picss go left, 10 = refresh every 10 milliseconds, true = fire straight away, don't delay
-		player.animations.add('right', [2, 3] 10, true);
+		player.animations.add('left', [0, 1, 2, 3] 10, true); //numbers in [] = which picss go left, 10 = refresh every 10 milliseconds, true = fire straight away, don't delay
+		player.animations.add('right', [5, 6, 7, 8] 10, true);
 		// add physics
 		game.physics.arcade.enable(player);
 		player.body.bounce.y = 0.2; //this is how much in bounces
@@ -44,8 +44,8 @@ function create() {
 	// enemies
 	enemy1 = game.add.sprite(760, 520, 'baddie');
 		// animate sprite 
-		enemy1.animations.add('left', [0, 1, 2, 3] 10, true); 
-		enemy1.animations.add('right', [5, 6, 7, 8] 10, true);
+		enemy1.animations.add('left', [0, 1] 10, true); 
+		enemy1.animations.add('right', [3, 4] 10, true);
 		// add physics
 		game.physics.arcade.enable(enemy1);
 		enemy1.body.bounce.y = 0.2; 
