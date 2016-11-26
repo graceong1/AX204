@@ -33,7 +33,7 @@ function create() {
 	// player
 	player = game.add.sprite(32, 400, 'dude');
 		// animate sprite 
-		player.animations.add('left', [0, 1, 2, 3] 10, true); //numbers in [] = which picss go left, 10 = refresh every 10 milliseconds, true = fire straight away, don't delay
+		player.animations.add('left', [0, 1, 2, 3] 10, true); //numbers in sqr bracks = which picss go left, 10 = refresh every 10 milliseconds, true = fire straight away, don't delay
 		player.animations.add('right', [5, 6, 7, 8] 10, true);
 		// add physics
 		game.physics.arcade.enable(player);
