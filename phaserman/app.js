@@ -137,23 +137,23 @@ function update() {
 		enemy1.animations.play('left');
 	} else if (enemy1.x < 405) {
 		enemy1.body.velocity.x = 120;
-		enemy1.animaitons.play('right');
+		enemy1.animations.play('right');
 	}
 
 	if (enemy2.x > 200) {
 		enemy2.body.velocity.x = -80;
-		enemy2.animaitons.play('left');
+		enemy2.animations.play('left');
 	} else if (enemy2.x < 20) {
 		enemy2.body.velocity.x = 80;
-		enemy2.animaitons.play('right');
+		enemy2.animations.play('right');
 	}
 
 	if (enemy3.x > 759) {
 		enemy3.body.velocity.x = -150;
-		enemy3.animaitons.play('left');
+		enemy3.animations.play('left');
 	} else if (enemy3.x < 200) {
 		enemy3.body.velocity.x = 150;
-		enemy3.animaitons.play('right');
+		enemy3.animations.play('right');
 	}
 
 	// collide with stars
