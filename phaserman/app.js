@@ -6,12 +6,14 @@ function preload() {
 	game.load.image('sky', 'assets/sky.png');
 	game.load.image('ground', 'assets/platform.png');
 	game.load.image('star', 'assets/star.png');
-	game.load.spritesheet('dude', 'assets/dude.png', 32, 48); //loading spritesheet is different, you need to write width + height too
+	//loading spritesheet is different, you need to write width + height too
+	game.load.spritesheet('dude', 'assets/dude.png', 32, 48); 
 	game.loag.spritesheet('baddie', 'assets/baddie.png', 32, 32);
 }
 
 function create() {
-	game.physics.startSystem(Phaser.Physics.ARCADE); //setting up whole physics engine
+	//setting up whole physics engine
+	game.physics.startSystem(Phaser.Physics.ARCADE); 
 	// sky
 	game.add.sprite(0, 0, 'sky');
 
@@ -30,16 +32,16 @@ function create() {
 	ledge = platforms.create(-150, 250, 'ground');
 	ledge.body.immovable = true;
 
-	// player
-	player = game.add.sprite(32, 400, 'dude');
-		// animate sprite 
-		player.animations.add('left', [0, 1, 2, 3] 10, true);
-		player.animations.add('right', [5, 6, 7, 8] 10, true);
-		// add physics
-		game.physics.arcade.enable(player);
-		player.body.bounce.y = 0.2; //this is how much in bounces
-		player.body.gravity.y = 300; //has gravity of 300, always gonna fall when jumping
-		player.body.collideWorldBounds = true; //able to keep player sprite inside canvas
+	  // Player
+	  player = game.add.sprite(32, game.world.height - 220, 'dude');
+	    // player animations using spritesheet and applies game physics
+	    player.animations.add('left', [0, 1, 2, 3], 10, true);
+	    player.animations.add('right', [5, 6, 7, 8], 10, true);
+	    game.physics.arcade.enable(player);
+	    // Player physics properties. Give the little guy a slight bounce.
+	    player.body.bounce.y = 0.2;
+	    player.body.gravity.y = 300;
+	    player.body.collideWorldBounds = true;
 
 	// enemies
 	enemy1 = game.add.sprite(760, 520, 'baddie');
