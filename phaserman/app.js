@@ -52,14 +52,56 @@ function create() {
 		enemy1.body.gravity.y = 500; 
 		enemy1.body.collideWorldBounds = true;
 
+	enemy2 = game.add.sprite(10, 20, 'baddie');
+		// animate sprite 
+		enemy2.animations.add('left', [0, 1] 10, true); 
+		enemy2.animations.add('right', [3, 4] 10, true);
+		// add physics
+		game.physics.arcade.enable(enemy2);
+		enemy2.body.bounce.y = 0.2; 
+		enemy2.body.gravity.y = 500; 
+		enemy2.body.collideWorldBounds = true;
+
+	enemy3 = game.add.sprite(200, 20, 'baddie');
+		// animate sprite 
+		enemy3.animations.add('left', [0, 1] 10, true); 
+		enemy3.animations.add('right', [3, 4] 10, true);
+		// add physics
+		game.physics.arcade.enable(enemy3);
+		enemy3.body.bounce.y = 0.2; 
+		enemy3.body.gravity.y = 500; 
+		enemy3.body.collideWorldBounds = true;
+
 	// set up keyboard events
 	cursors = game.input.keyboard.createCursorKeys();
+
+	// create stars
+	stars = game.add.physicsGroup();
+	stars.enableBody = true;
+	// loop to create 12 stars
+	for(var i = 0; 1 < 12; i++) {
+		var star = stars.create(1 * 70, 0, 'star');
+		star.body.gravity.y = 200; // gravity.y equals gravity up and down
+		star.body.bounce.y = 0.2 + Math.random * 0.7;
+	}
+
+	// set up text
+	var style = {font: "bold 32px Arial", fill: "#fff", boundsAlineH: "center", boundsAlginV: "middle"};
+	// create and position text
+	scorelabel = game.add.text(-60, 0, "Your score is: ", style);
+	scoretext = game.add.text(70, 0, score, style);
+	scorelabel.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+	scoretext.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+	scorelabel.setTextBounds(0, 520, 80, 100); // 0 & 520 are x & y, 80 & 100 are width & height
+	scoretext.setTextBounds(0, 520, 80, 100);
 }
 
 function update() {
 	// collision for player/enemy and the platforms
 	game.physics.arcade.collide(player, platforms);
 	game.physics.arcade.collide(enemy1, platforms);
+	game.physics.arcade.collide(enemy2, platforms);
+	game.physics.arcade.collide(enemy3, platforms);
 	// resets player sprite speed
 	player.body.velocity.x = 0;
 
@@ -83,5 +125,55 @@ function update() {
 	} else if (enemy1.x < 405) {
 		enemy1.body.velocity.x = 120;
 		enemy1.animaitons.play('right');
+	}
 
+	if (enemy2.x > 200) {
+		enemy2.body.velocity.x = -80;
+		enemy2.animaitons.play('left');
+	} else if (enemy2.x < 20) {
+		enemy2.body.velocity.x = 80;
+		enemy2.animaitons.play('right');
+	}
 
+	if (enemy3.x > 759) {
+		enemy3.body.velocity.x = -150;
+		enemy3.animaitons.play('left');
+	} else if (enemy3.x < 200) {
+		enemy3.body.velocity.x = 150;
+		enemy3.animaitons.play('right');
+	}
+
+	// collide with stars
+	game.physics.arcade.collide(stars, platforms);
+	// define what happens when collision occurs - overlap
+	game.physics.arcade.overlap(player, stars, collectStar, null, this); 
+	game.physics.arcade.overlap(player, enemy1, losePoint, null, this);
+	game.physics.arcade.overlap(player, enemy2, losePointLeft, null, this);
+	game.physics.arcade.overlap(player, enemy3, losePoint, null, this);
+}
+
+// define collectStar
+function CollectStar (player, star){
+	star.kill();
+	score = score + 1;
+	scoretext.setText(score); //update score visually
+	// creating new star
+	star = stars.create(Math.floor(Math.random() * 750), 0, 'star'); //750 = width
+	star.body.gravity.y = 200;
+	star.body.bounce.y = 0.2 + Math.random * 0.7;
+}
+
+//define losePoint
+function losePoint (player, enemy){
+	enemy.kill();
+	score = score - 5;
+	scoretext.setText(score);
+	enemy.reset(760, 20);
+}
+
+function losePointLeft (player, enemy){
+	enemy.kill();
+	score = score - 5;
+	scoretext.setText(score);
+	enemy.reset(10, 20);
+}
