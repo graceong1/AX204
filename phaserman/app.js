@@ -166,7 +166,7 @@ function update() {
 }
 
 // define collectStar
-function CollectStar (player, star){
+function collectStar (player, star){
 	star.kill();
 	score = score + 1;
 	scoretext.setText(score); //update score visually
