@@ -134,7 +134,7 @@ function update() {
 	// enemy AI
 	if (enemy1.x > 759) {
 		enemy1.body.velocity.x = -120;
-		enemy1.animaitons.play('left');
+		enemy1.animations.play('left');
 	} else if (enemy1.x < 405) {
 		enemy1.body.velocity.x = 120;
 		enemy1.animaitons.play('right');
