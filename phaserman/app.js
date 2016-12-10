@@ -63,7 +63,7 @@ function create() {
     enemy2.body.gravity.y = 500;
     enemy2.body.collideWorldBounds = true;
 
-  enemy3 = game.add.sprite(760, 20, 'baddie')
+  enemy3 = game.add.sprite(770, 20, 'baddie')
     // Enemy animations using spritesheet and applies game physics
     enemy3.animations.add('left', [0, 1], 10, true);
     enemy3.animations.add('right', [2, 3], 10, true);
@@ -99,8 +99,7 @@ function create() {
     //  We'll set the bounds to be from x0, y520 (top down) and be 800px wide by 100px high
     scorelabel.setTextBounds(0, 520, 800, 100);
     scoretext.setTextBounds(0, 520, 800, 100);
-    //  We'll set the bounds to be from x0, y520 (top down) and be 800px wide by 100px high
-    lifetext.setTextBounds(0, 0, 800, 100);
+
 }
 
 function update() {
