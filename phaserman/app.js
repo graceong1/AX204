@@ -100,7 +100,6 @@ function create() {
     scorelabel.setTextBounds(0, 520, 800, 100);
     scoretext.setTextBounds(0, 520, 800, 100);
     //  We'll set the bounds to be from x0, y520 (top down) and be 800px wide by 100px high
-    lifelabel.setTextBounds(0, 0, 800, 100);
     lifetext.setTextBounds(0, 0, 800, 100);
 }
 
@@ -118,7 +117,7 @@ function update() {
 		player.body.velocity.x = -150; //moving to the left
 		player.animations.play('left');
 	} else if (cursors.right.isDown) {
-		player.body.velocity.x = -150; //moving to the right
+		player.body.velocity.x = 150; //moving to the right
 		player.animations.play('right');
 	} else {
 		// when player sprite stops
